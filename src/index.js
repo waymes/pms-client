@@ -1,8 +1,20 @@
 import React from 'react';
 import { render } from 'react-dom';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import { Provider } from 'react-redux';
+import { ConnectedRouter } from 'connected-react-router';
 
-render(<App />, document.getElementById('root'));
+import App from './components/App';
+import { store, history } from './store';
+import * as serviceWorker from './serviceWorker';
+import './style/main.scss';
+
+render(
+  <Provider store={store}>
+    <ConnectedRouter history={history}>
+      <App />
+    </ConnectedRouter>
+  </Provider>,
+  document.getElementById('root')
+);
 
 serviceWorker.unregister(); // TODO: register

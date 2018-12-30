@@ -1,0 +1,23 @@
+.windowForm {
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 1px 2px 1px #ddd;
+  width: 100%;
+  max-width: 450px;
+  margin: 100px auto;
+  padding: 20px 30px 30px;
+  &__title {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  &__form {
+    .textField {
+      margin-bottom: 20px;
+    }
+    .button {
+      display: block;
+      width: max-content;
+      margin-left: auto;
+    }
+  }
+}

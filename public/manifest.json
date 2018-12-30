@@ -1,6 +1,6 @@
 {
-  "short_name": "Callin",
-  "name": "Application for storing personal notes",
+  "short_name": "PMS",
+  "name": "People Management System - Application for storing people",
   "icons": [
     {
       "src": "favicon.ico",

@@ -1,0 +1,11 @@
+.textField {
+  input {
+    width: 100%;
+    padding: 10px 15px;
+    border: none;
+    background-color: #eee;
+    &:focus {
+      outline: none;
+    }
+  }
+}

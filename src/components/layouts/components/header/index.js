@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { doLogout } from '../../../../store/actions/auth';
@@ -42,7 +42,7 @@ class Header extends Component {
       <ul className="headerLinks">
         {linksList.map(link => (
           <li key={link.to} className="headerLinks__item">
-            <Link to={link.to}>{link.label}</Link>
+            <NavLink exact to={link.to} activeClassName="active">{link.label}</NavLink>
           </li>
         ))}
         {withToken && (

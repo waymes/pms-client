@@ -1,4 +1,4 @@
 const getAuth = state => state.auth;
 
-// eslint-disable-next-line import/prefer-default-export
 export const getToken = state => getAuth(state).token;
+export const getLoading = state => getAuth(state).loading;

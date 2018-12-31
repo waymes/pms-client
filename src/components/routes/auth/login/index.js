@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 
 import { doSigninAction } from '../../../../store/actions/auth';
+import { getLoading } from '../../../../store/selectors/auth';
 import authCheck from '../../../layouts/auth-wrapper';
 import WindowForm from '../components/window-form';
 import TextField from '../../../common/text-field';
@@ -18,10 +19,10 @@ class LoginPage extends Component {
   };
 
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, isLoading } = this.props;
 
     return (
-      <WindowForm title="Log in" onSubmit={handleSubmit(this.submit)}>
+      <WindowForm title="Log in" onSubmit={handleSubmit(this.submit)} isLoading={isLoading}>
         <TextField name="email" placeholder="Email" type="email" required />
         <TextField name="password" placeholder="Password" type="password" required />
         <Button type="submit">Login</Button>
@@ -32,8 +33,13 @@ class LoginPage extends Component {
 
 LoginPage.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
-  signin: PropTypes.func.isRequired
+  signin: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired
 };
+
+const mapStateToProps = state => ({
+  isLoading: getLoading(state)
+})
 
 const mapDispatchToProps = dispatch => ({
   signin: values => dispatch(doSigninAction(values))
@@ -41,6 +47,6 @@ const mapDispatchToProps = dispatch => ({
 
 export default compose(
   authCheck({ withAuth: false }),
-  connect(null, mapDispatchToProps),
+  connect(mapStateToProps, mapDispatchToProps),
   reduxForm({ form: 'LoginPageForm' }),
 )(LoginPage);

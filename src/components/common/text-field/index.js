@@ -4,7 +4,7 @@ import { Field } from 'redux-form';
 
 import './style.scss';
 
-const validate = value => (value ? undefined : 'Required');
+const validate = value => ((value && value.trim()) ? undefined : 'Required');
 
 const Input = ({ meta: { touched, error }, input, ...props }) => (
   <div className="textField">

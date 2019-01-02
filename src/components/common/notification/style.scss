@@ -1,0 +1,22 @@
+.notificationList {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  padding: 0 15px;
+}
+
+.notification {
+  padding: 5px 10px;
+  color: #fff;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  &_success {
+    background-color: green;
+  }
+  &_error {
+    background-color: red;
+  }
+  &__text {
+    margin-left: 10px;
+  }
+}

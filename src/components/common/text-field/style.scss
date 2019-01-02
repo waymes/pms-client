@@ -1,4 +1,6 @@
 .textField {
+  position: relative;
+  padding-bottom: 24px;
   input {
     width: 100%;
     padding: 10px 15px;
@@ -7,5 +9,12 @@
     &:focus {
       outline: none;
     }
+  }
+  &__error {
+    position: absolute;
+    bottom: 0;
+    left: 10px;
+    font-size: 12px;
+    color: red;
   }
 }

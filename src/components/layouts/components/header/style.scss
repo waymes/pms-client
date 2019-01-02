@@ -35,12 +35,12 @@
           height: 3px;
           width: 0;
           background: skyblue;
-          transition: width 0.4s;
+          transition: all 0.4s;
         }
         &:hover {
           text-decoration: none;
           &:after {
-            width: 100%;
+            width: 30%;
           }
         }
         &.active {

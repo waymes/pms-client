@@ -1,7 +1,9 @@
 import axios from 'axios';
 
+import { getCurrentState } from '../store';
+
 const requestHelper = axios.create({
-  baseURL: process.env.REACT_APP_SERVER_URL,
+  baseURL: process.env.REACT_APP_SERVER_URL || 'http://localhost:8080',
   timeout: 45000,
   headers: {
     'Content-Type': 'application/json',
@@ -28,6 +30,11 @@ function checkStatus(response) {
 // eslint-disable-next-line import/prefer-default-export
 export function authRequest(meta) {
   const headers = {};
+
+  const token = getCurrentState().auth.token;
+  if (token) {
+    headers.authorization = token;
+  }
 
   return requestHelper
     .request({

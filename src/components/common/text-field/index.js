@@ -6,16 +6,21 @@ import './style.scss';
 
 const validate = value => (value ? undefined : 'Required');
 
-const TextField = ({ name, required, ...other }) => (
+const Input = ({ meta: { touched, error }, input, ...props }) => (
   <div className="textField">
-    <Field
-      name={name}
-      component="input"
-      required={required}
-      validate={required && validate}
-      {...other}
-    />
+    <input {...input} {...props} />
+    {touched && error && <span className="textField__error">{error}</span>}
   </div>
+);
+
+const TextField = ({ name, required, ...other }) => (
+  <Field
+    name={name}
+    component={Input}
+    required={required}
+    validate={required && validate}
+    {...other}
+  />
 );
 
 TextField.propTypes = {

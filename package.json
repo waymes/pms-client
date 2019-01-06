@@ -2,15 +2,18 @@
   "name": "pms",
   "version": "0.1.0",
   "scripts": {
-    "start": "react-scripts start",
+    "start": "./node_modules/.bin/serve -s build",
+    "dev": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
     "axios": "^0.18.0",
     "connected-react-router": "^6.0.0",
     "history": "^4.7.2",
+    "node-sass": "^4.11.0",
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
@@ -22,7 +25,7 @@
     "redux-form": "^8.0.4",
     "redux-persist": "^5.10.0",
     "redux-saga": "^0.16.2",
-    "node-sass": "^4.11.0"
+    "serve": "^10.1.1"
   },
   "eslintConfig": {
     "extends": "react-app"

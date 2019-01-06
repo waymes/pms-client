@@ -1,8 +1,9 @@
 import {
-  SIGNIN, SIGNIN_SUCCESS, SIGNIN_ERROR,
+  LOGIN, LOGIN_SUCCESS, LOGIN_ERROR,
   SIGNUP, SIGNUP_SUCCESS, SIGNUP_ERROR,
   LOGOUT
 } from '../actions/auth';
+import { getErrorMessage } from '../../helpers/request';
 
 const initialState = {
   token: null,
@@ -12,18 +13,18 @@ const initialState = {
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case SIGNIN:
+    case LOGIN:
       return { ...state, error: null, loading: true };
-    case SIGNIN_SUCCESS:
+    case LOGIN_SUCCESS:
       return { ...state, token: action.token, loading: false };
-    case SIGNIN_ERROR:
-      return { ...state, error: action.error.toString(), loading: false };
+    case LOGIN_ERROR:
+      return { ...state, error: getErrorMessage(action.error), loading: false };
     case SIGNUP:
       return { ...state, error: null, loading: true };
     case SIGNUP_SUCCESS:
       return { ...state, token: action.token, loading: false };
     case SIGNUP_ERROR:
-      return { ...state, error: action.error.toString(), loading: false };
+      return { ...state, error: getErrorMessage(action.error), loading: false };
     case LOGOUT:
       return { ...state, token: null };
     default:

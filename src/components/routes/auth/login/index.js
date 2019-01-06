@@ -4,7 +4,7 @@ import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
-import { doSigninAction } from '../../../../store/actions/auth';
+import { loginAction } from '../../../../store/actions/auth';
 import { getLoading, getError } from '../../../../store/selectors/auth';
 import authCheck from '../../../layouts/auth-wrapper';
 import { withNotifications } from '../../../common/notification';
@@ -22,9 +22,9 @@ class LoginPage extends Component {
   }
 
   submit = (values) => {
-    const { signin } = this.props;
+    const { login } = this.props;
 
-    signin(values);
+    login(values);
   };
 
   render() {
@@ -42,7 +42,7 @@ class LoginPage extends Component {
 
 LoginPage.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
-  signin: PropTypes.func.isRequired,
+  login: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
   errorMessage: PropTypes.string
 };
@@ -53,7 +53,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  signin: values => dispatch(doSigninAction(values))
+  login: values => dispatch(loginAction(values))
 });
 
 export default compose(

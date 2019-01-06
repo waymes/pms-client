@@ -3,34 +3,34 @@ import { push } from 'connected-react-router';
 
 import { authRequest } from '../../helpers/request';
 import {
-  doSigninSuccessAction, doSigninErrorAction,
-  doSignupSuccessAction, doSignupErrorAction
+  loginSuccessAction, loginErrorAction,
+  signupSuccessAction, signupErrorAction
 } from '../actions/auth';
 
-export function* doSignin(action) {
+export function* login(action) {
   try {
     const response = yield authRequest({
-      url: '/auth/signin',
+      url: '/auth/login',
       method: 'POST',
       data: action.payload
     });
-    yield put(doSigninSuccessAction(response.data.token));
+    yield put(loginSuccessAction(response.data.token));
     yield put(push('/profile'));
   } catch (error) {
-    yield put(doSigninErrorAction(error));
+    yield put(loginErrorAction(error));
   }
 }
 
-export function* doSignup(action) {
+export function* signup(action) {
   try {
     const response = yield authRequest({
       url: '/auth/signup',
       method: 'POST',
       data: action.payload
     });
-    yield put(doSignupSuccessAction(response.data.token));
+    yield put(signupSuccessAction(response.data.token));
     yield put(push('/profile'));
   } catch (error) {
-    yield put(doSignupErrorAction(error));
+    yield put(signupErrorAction(error));
   }
 }

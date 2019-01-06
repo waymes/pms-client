@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { doLogout } from '../../../../store/actions/auth';
+import { logoutAction } from '../../../../store/actions/auth';
 import { getToken } from '../../../../store/selectors/auth';
 import './style.scss';
 
@@ -83,7 +83,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  logout: () => dispatch(doLogout())
+  logout: () => dispatch(logoutAction())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

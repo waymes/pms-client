@@ -5,13 +5,22 @@ import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 
 import authCheck from '../../../layouts/auth-wrapper';
-import { doSignupAction } from '../../../../store/actions/auth';
+import { withNotifications } from '../../../common/notification';
+import { signupAction } from '../../../../store/actions/auth';
 import WindowForm from '../components/window-form';
 import TextField from '../../../common/text-field';
 import Button from '../../../common/button';
-import { getLoading } from '../../../../store/selectors/auth';
+import { getLoading, getError } from '../../../../store/selectors/auth';
 
 class SignupPage extends Component {
+  componentDidUpdate(prevProps) {
+    const { errorMessage, queueNotification } = this.props;
+
+    if (!prevProps.errorMessage && errorMessage) {
+      queueNotification(errorMessage, { variant: 'error' });
+    }
+  }
+
   submit = (values) => {
     const { signup } = this.props;
 
@@ -36,19 +45,23 @@ class SignupPage extends Component {
 SignupPage.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   signup: PropTypes.func.isRequired,
-  isLoading: PropTypes.bool.isRequired
+  isLoading: PropTypes.bool.isRequired,
+  errorMessage: PropTypes.string,
+  queueNotification: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
-  isLoading: getLoading(state)
+  isLoading: getLoading(state),
+  errorMessage: getError(state)
 });
 
 const mapDispatchToProps = dispatch => ({
-  signup: values => dispatch(doSignupAction(values)),
+  signup: values => dispatch(signupAction(values)),
 });
 
 export default compose(
   authCheck({ withAuth: false }),
   connect(mapStateToProps, mapDispatchToProps),
   reduxForm({ form: 'SignupPageForm' }),
+  withNotifications
 )(SignupPage);

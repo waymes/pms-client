@@ -46,3 +46,11 @@ export function authRequest(meta) {
     .then(checkStatus)
     .then(parseJSON);
 }
+
+export function getErrorMessage(err) {
+  let error = err.toString();
+  if (err.response && err.response.data && err.response.data.message) {
+    error = err.response.data.message;
+  }
+  return error;
+}

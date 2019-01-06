@@ -1,6 +1,7 @@
 import {
   FETCH_CURRENT_USER, FETCH_CURRENT_USER_SUCCESS, FETCH_CURRENT_USER_ERROR
 } from '../actions/user';
+import { getErrorMessage } from '../../helpers/request';
 
 const initialState = {
   user: null,
@@ -15,7 +16,7 @@ export default function (state = initialState, action) {
     case FETCH_CURRENT_USER_SUCCESS:
       return { ...state, user: action.user, loading: false };
     case FETCH_CURRENT_USER_ERROR:
-      return { ...state, error: action.error.toString(), loading: false };
+      return { ...state, error: getErrorMessage(action.error), loading: false };
     default:
       return state;
   }

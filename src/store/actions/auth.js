@@ -1,6 +1,6 @@
-export const SIGNIN = 'AUTH/SIGNIN';
-export const SIGNIN_SUCCESS = 'AUTH/SIGNIN_SUCCESS';
-export const SIGNIN_ERROR = 'AUTH/SIGNIN_ERROR';
+export const LOGIN = 'AUTH/LOGIN';
+export const LOGIN_SUCCESS = 'AUTH/LOGIN_SUCCESS';
+export const LOGIN_ERROR = 'AUTH/LOGIN_ERROR';
 
 export const SIGNUP = 'AUTH/SIGNUP';
 export const SIGNUP_SUCCESS = 'AUTH/SIGNUP_SUCCESS';
@@ -8,35 +8,35 @@ export const SIGNUP_ERROR = 'AUTH/SIGNUP_ERROR';
 
 export const LOGOUT = 'AUTH/LOGOUT';
 
-// signin ==============================================
-export const doSigninAction = payload => ({
-  type: SIGNIN,
+// login ==============================================
+export const loginAction = payload => ({
+  type: LOGIN,
   payload
 });
-export const doSigninSuccessAction = token => ({
-  type: SIGNIN_SUCCESS,
+export const loginSuccessAction = token => ({
+  type: LOGIN_SUCCESS,
   token
 });
-export const doSigninErrorAction = error => ({
-  type: SIGNIN_ERROR,
+export const loginErrorAction = error => ({
+  type: LOGIN_ERROR,
   error
 });
 
 // signup ==============================================
-export const doSignupAction = payload => ({
+export const signupAction = payload => ({
   type: SIGNUP,
   payload
 });
-export const doSignupSuccessAction = token => ({
+export const signupSuccessAction = token => ({
   type: SIGNUP_SUCCESS,
   token
 });
-export const doSignupErrorAction = error => ({
+export const signupErrorAction = error => ({
   type: SIGNUP_ERROR,
   error
 });
 
 // logout ==============================================
-export const doLogout = () => ({
+export const logoutAction = () => ({
   type: LOGOUT
 });

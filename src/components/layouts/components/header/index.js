@@ -16,10 +16,10 @@ class Header extends Component {
       withoutAuth: 'WITHOUT_AUTH'
     };
     this.links = [
-      { label: 'Home', to: '/', auth: this.permissions.all },
-      { label: 'Profile', to: '/profile', auth: this.permissions.withAuth },
-      { label: 'Login', to: '/login', auth: this.permissions.withoutAuth },
-      { label: 'Signup', to: '/signup', auth: this.permissions.withoutAuth }
+      { label: 'Home', to: '/', auth: this.permissions.all, exact: true },
+      { label: 'Profile', to: '/profile', auth: this.permissions.withAuth, exact: false },
+      { label: 'Login', to: '/login', auth: this.permissions.withoutAuth, exact: true },
+      { label: 'Signup', to: '/signup', auth: this.permissions.withoutAuth, exact: true }
     ];
   }
 
@@ -42,7 +42,7 @@ class Header extends Component {
       <ul className="headerLinks">
         {linksList.map(link => (
           <li key={link.to} className="headerLinks__item">
-            <NavLink exact to={link.to} activeClassName="active">{link.label}</NavLink>
+            <NavLink exact={link.exact} to={link.to} activeClassName="active">{link.label}</NavLink>
           </li>
         ))}
         {withToken && (

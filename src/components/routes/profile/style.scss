@@ -1,4 +1,5 @@
 .profilePage {
+  overflow: auto;
   &__header {
     display: flex;
     margin: 20px 0;
@@ -44,6 +45,7 @@
   }
   &__tabsContent {
     background-color: #fff;
+    position: relative;
   }
   &Info {
     &__name {

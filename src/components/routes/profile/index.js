@@ -9,7 +9,8 @@ import { getUserInfo, getUserIsLoading } from '../../../store/selectors/user';
 import { fetchCurrentUserAction } from '../../../store/actions/user';
 import Loader from '../../common/loader';
 import Edit from './edit';
-import People from './people';
+import PeopleList from './people-list';
+import PeopleEdit from './people-edit';
 import Settings from './settings';
 
 import DefaultAva from '../../../assets/default.png';
@@ -20,9 +21,9 @@ class ProfilePage extends Component {
     super(props);
 
     this.tabs = [
-      { label: 'Profile', to: '/profile' },
-      { label: 'People', to: '/profile/people' },
-      { label: 'Settings', to: '/profile/settings' },
+      { label: 'Profile', to: '/profile', exact: true },
+      { label: 'People', to: '/profile/people', exact: false },
+      { label: 'Settings', to: '/profile/settings', exact: true },
     ];
   }
 
@@ -38,7 +39,7 @@ class ProfilePage extends Component {
         {this.tabs.map(tab => (
           <li className="profilePageTabs__item" key={tab.to}>
             <NavLink
-              exact
+              exact={tab.exact}
               className="profilePageTabs__link"
               activeClassName="profilePageTabs__link_active"
               to={tab.to}
@@ -50,9 +51,9 @@ class ProfilePage extends Component {
   }
 
   render() {
-    const { user, match } = this.props;
+    const { user, match, isLoading } = this.props;
 
-    if (!user) return <Loader isLoading={true} />;
+    if (!user || isLoading) return <Loader isLoading={true} />;
 
     return (
       <div className="profilePage">
@@ -69,7 +70,8 @@ class ProfilePage extends Component {
         <div className="profilePage__tabsContent">
           <div className="container">
             <Route exact path={`${match.url}/`} component={Edit} />
-            <Route exact path={`${match.url}/people`} component={People} />
+            <Route exact path={`${match.url}/people`} component={PeopleList} />
+            <Route exact path={`${match.url}/people/:personId`} component={PeopleEdit} />
             <Route exact path={`${match.url}/settings`} component={Settings} />
           </div>
         </div>

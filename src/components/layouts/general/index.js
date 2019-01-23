@@ -2,11 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Header from '../components/header';
+import './style.scss';
 
 const GeneralLayout = ({ children }) => (
-  <div>
+  <div className="generalLayout">
     <Header />
-    {children}
+    <div className="generalLayout__pageContainer">
+      {children}
+    </div>
   </div>
 );
 

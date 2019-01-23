@@ -39,7 +39,7 @@ export function* createNewPerson(action) {
 
 export function* updatePerson(action) {
   try {
-    const response = yield authRequest({ url: '/people', method: 'put', data: action.person });
+    const response = yield authRequest({ url: `/people/${action.person._id}`, method: 'put', data: action.person });
     yield put(updatePersonSuccessAction(response.data));
   } catch (error) {
     yield put(updatePersonErrorAction(error));

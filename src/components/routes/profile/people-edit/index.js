@@ -4,7 +4,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 
-import { getPerson, getPeopleIsLoading } from '../../../../store/selectors/people';
+import { getPerson, getPersonIsLoading } from '../../../../store/selectors/people';
 import { fetchPersonAction, createNewPersonAction, updatePersonAction, clearPersonAction } from '../../../../store/actions/people';
 import TextField from '../../../common/text-field';
 import Button from '../../../common/button';
@@ -65,7 +65,7 @@ PeopleEdit.propTypes = {
 const mapStateToProps = state => ({
   person: getPerson(state),
   initialValues: getPerson(state),
-  loading: getPeopleIsLoading(state)
+  loading: getPersonIsLoading(state)
 });
 
 const mapDispatchToProps = dispatch => ({

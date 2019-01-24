@@ -7,6 +7,7 @@ import {
   fetchPersonSuccessAction, fetchPersonErrorAction,
   createNewPersonSuccessAction, createNewPersonErrorAction,
   updatePersonSuccessAction, updatePersonErrorAction,
+  deletePersonSuccessAction, deletePersonErrorAction,
 } from '../actions/people';
 
 export function* fetchMyPeople() {
@@ -39,9 +40,18 @@ export function* createNewPerson(action) {
 
 export function* updatePerson(action) {
   try {
-    const response = yield authRequest({ url: `/people/${action.person._id}`, method: 'put', data: action.person });
-    yield put(updatePersonSuccessAction(response.data));
+    yield authRequest({ url: `/people/${action.person._id}`, method: 'put', data: action.person });
+    yield put(updatePersonSuccessAction());
   } catch (error) {
     yield put(updatePersonErrorAction(error));
+  }
+}
+
+export function* deletePerson(action) {
+  try {
+    yield authRequest({ url: `/people/${action.person._id}`, method: 'delete' });
+    yield put(deletePersonSuccessAction());
+  } catch (error) {
+    yield put(deletePersonErrorAction(error));
   }
 }

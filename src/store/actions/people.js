@@ -14,6 +14,10 @@ export const UPDATE_PERSON = 'PEOPLE/UPDATE_PERSON';
 export const UPDATE_PERSON_SUCCESS = 'PEOPLE/UPDATE_PERSON_SUCCESS';
 export const UPDATE_PERSON_ERROR = 'PEOPLE/UPDATE_PERSON_ERROR';
 
+export const DELETE_PERSON = 'PEOPLE/DELETE_PERSON';
+export const DELETE_PERSON_SUCCESS = 'PEOPLE/DELETE_PERSON_SUCCESS';
+export const DELETE_PERSON_ERROR = 'PEOPLE/DELETE_PERSON_ERROR';
+
 export const CLEAR_PERSON = 'PEOPLE/CLEAR_PERSON';
 
 // fetchMyPeople ================================================
@@ -62,12 +66,24 @@ export const updatePersonAction = (person) => ({
   type: UPDATE_PERSON,
   person
 });
-export const updatePersonSuccessAction = person => ({
-  type: UPDATE_PERSON_SUCCESS,
-  person
+export const updatePersonSuccessAction = () => ({
+  type: UPDATE_PERSON_SUCCESS
 });
 export const updatePersonErrorAction = error => ({
   type: UPDATE_PERSON_ERROR,
+  error
+});
+
+// deletePerson =================================================
+export const deletePersonAction = (personId) => ({
+  type: DELETE_PERSON,
+  personId
+});
+export const deletePersonSuccessAction = () => ({
+  type: DELETE_PERSON_SUCCESS
+});
+export const deletePersonErrorAction = error => ({
+  type: DELETE_PERSON_ERROR,
   error
 });
 

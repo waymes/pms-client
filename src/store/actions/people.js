@@ -79,8 +79,9 @@ export const deletePersonAction = (personId) => ({
   type: DELETE_PERSON,
   personId
 });
-export const deletePersonSuccessAction = () => ({
-  type: DELETE_PERSON_SUCCESS
+export const deletePersonSuccessAction = (personId) => ({
+  type: DELETE_PERSON_SUCCESS,
+  personId
 });
 export const deletePersonErrorAction = error => ({
   type: DELETE_PERSON_ERROR,

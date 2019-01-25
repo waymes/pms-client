@@ -1,0 +1,16 @@
+.personItem {
+  padding: 10px 0;
+  display: flex;
+  list-style-type: none;
+  border-top: 1px solid #dfe3e6;
+  &__photo {
+    width: 100px;
+    height: 100px;
+    background-position: center;
+    background-size: cover;
+    margin-right: 10px;
+  }
+  &__name {
+    font-size: 20px;
+  }
+}

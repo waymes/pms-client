@@ -39,7 +39,11 @@ export default function (state = initialState, action) {
     case DELETE_PERSON:
       return { ...state, error: null, personLoading: true };
     case DELETE_PERSON_SUCCESS:
-      return { ...state, personLoading: false };
+      return {
+        ...state,
+        personLoading: false,
+        peopleList: state.peopleList.filter(person => person._id !== action.personId)
+      };
     case DELETE_PERSON_ERROR:
       return { ...state, error: getErrorMessage(action.error), personLoading: false };
     case FETCH_PERSON:

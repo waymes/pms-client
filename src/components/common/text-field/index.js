@@ -1,27 +1,46 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Field } from 'redux-form';
 
 import './style.scss';
 
-const validate = value => ((value && value.trim()) ? undefined : 'Required');
+class TextField extends Component {
+  constructor(props) {
+    super(props);
+    this.input = React.createRef();
+  }
 
-const Input = ({ meta: { touched, error }, input, ...props }) => (
-  <div className="textField">
-    <input {...input} {...props} />
-    {touched && error && <span className="textField__error">{error}</span>}
-  </div>
-);
+  focusInput() {
+    if (this.input.current) {
+      this.input.current.focus();
+    }
+  }
 
-const TextField = ({ name, required, ...other }) => (
-  <Field
-    name={name}
-    component={Input}
-    required={required}
-    validate={required && validate}
-    {...other}
-  />
-);
+  validate = (value) => {
+    return (value && value.trim()) ? undefined : 'Required';
+  }
+
+  renderInput = ({ meta: { touched, error }, input, ...props }) => (
+    <div className="textField">
+      <input {...input} {...props} ref={this.input} />
+      {touched && error && <span className="textField__error">{error}</span>}
+    </div>
+  );
+ 
+  render() {
+    const { name, required, ...other } = this.props;
+
+    return (
+      <Field
+        name={name}
+        component={this.renderInput}
+        required={required}
+        validate={required && this.validate}
+        {...other}
+      />
+    );
+  }
+}
 
 TextField.propTypes = {
   name: PropTypes.string.isRequired,

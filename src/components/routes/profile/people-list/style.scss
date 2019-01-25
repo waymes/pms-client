@@ -1,0 +1,13 @@
+.peopleList {
+  overflow: auto;
+  &__header {
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__list {
+    margin: 0;
+    padding: 0;
+  }
+}

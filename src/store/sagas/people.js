@@ -49,8 +49,9 @@ export function* updatePerson(action) {
 
 export function* deletePerson(action) {
   try {
-    yield authRequest({ url: `/people/${action.person._id}`, method: 'delete' });
-    yield put(deletePersonSuccessAction());
+    yield authRequest({ url: `/people/${action.personId}`, method: 'delete' });
+    yield put(deletePersonSuccessAction(action.personId));
+    yield put(push('/profile/people'));
   } catch (error) {
     yield put(deletePersonErrorAction(error));
   }

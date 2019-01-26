@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 
 import { getPeopleList, getPeopleIsLoading } from '../../../../store/selectors/people';
 import { fetchMyPeopleAction } from '../../../../store/actions/people';
+import ContentLayout from '../components/content-layout';
 import Loader from '../../../common/loader';
 import PersonItem from '../../../common/person-list-item';
-import './style.scss';
 
 class PeopleList extends Component {
   componentDidMount() {
@@ -19,17 +18,14 @@ class PeopleList extends Component {
   render() {
     const { peopleList, match, loading } = this.props;
 
+    const headerLink = { label: 'New Person', to: `${match.url}/new` };
     return (
-      <div className="peopleList">
-        <div className="peopleList__header">
-          <h3>My People</h3>
-          <Link to={`${match.url}/new`}>New Person</Link>
-        </div>
-        <ul className="peopleList__list">
+      <ContentLayout title="My People" headerLink={headerLink}>
+        <ul className="mt-3 mb-0 p-0">
           {peopleList.map(person => <PersonItem person={person} key={person._id} />)}
         </ul>
         <Loader isLoading={peopleList.length === 0 && loading} />
-      </div>
+      </ContentLayout>
     );
   }
 }

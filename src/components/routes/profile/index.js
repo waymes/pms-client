@@ -51,9 +51,9 @@ class ProfilePage extends Component {
   }
 
   render() {
-    const { user, match, isLoading } = this.props;
+    const { user, match } = this.props;
 
-    if (!user || isLoading) return <Loader isLoading={true} />;
+    if (!user) return <Loader isLoading={true} />;
 
     return (
       <div className="profilePage">

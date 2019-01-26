@@ -10,6 +10,7 @@ import {
   updatePersonAction, clearPersonAction,
   deletePersonAction
 } from '../../../../store/actions/people';
+import ContentLayout from '../components/content-layout';
 import TextField from '../../../common/text-field';
 import Button from '../../../common/button';
 import Loader from '../../../common/loader';
@@ -57,8 +58,7 @@ class PeopleEdit extends Component {
 
     const isNew = match.params.personId === 'new';
     return (
-      <div className="profilePeople">
-        <h3>{isNew ? 'New Person' : 'Edit Person'}</h3>
+      <ContentLayout title={isNew ? 'New Person' : 'Edit Person'}>
         <form onSubmit={handleSubmit(this.submit)}>
           <TextField name="firstName" required disabled={loading} ref={this.firstInput} />
           <TextField name="lastName" required disabled={loading} />
@@ -66,7 +66,7 @@ class PeopleEdit extends Component {
           {!isNew && <Button onClick={this.delete} disabled={loading}>Delete</Button>}
         </form>
         <Loader isLoading={loading} withBlur={true} />
-      </div>
+      </ContentLayout>
     );
   }
 }

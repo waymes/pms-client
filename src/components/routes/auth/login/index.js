@@ -33,7 +33,13 @@ class LoginPage extends Component {
     return (
       <WindowForm title="Log in" onSubmit={handleSubmit(this.submit)} isLoading={isLoading}>
         <TextField name="email" placeholder="Email" type="email" required />
-        <TextField name="password" placeholder="Password" type="password" required />
+        <TextField
+          name="password"
+          placeholder="Password"
+          type="password"
+          autoComplete="current-password"
+          required
+        />
         <Button type="submit">Login</Button>
       </WindowForm>
     );

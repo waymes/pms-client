@@ -62,8 +62,16 @@ class PeopleEdit extends Component {
         <form onSubmit={handleSubmit(this.submit)}>
           <TextField name="firstName" required disabled={loading} ref={this.firstInput} />
           <TextField name="lastName" required disabled={loading} />
-          <Button type="submit" disabled={loading}>{isNew ? 'Create' : 'Save'}</Button>
-          {!isNew && <Button onClick={this.delete} disabled={loading}>Delete</Button>}
+          <div className="d-flex justify-content-end">
+            {!isNew && (
+              <Button
+                className="mr-3"
+                onClick={this.delete}
+                disabled={loading}
+              >Delete</Button>
+            )}
+            <Button type="submit" disabled={loading}>{isNew ? 'Create' : 'Save'}</Button>
+          </div>
         </form>
         <Loader isLoading={loading} withBlur={true} />
       </ContentLayout>

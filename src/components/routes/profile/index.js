@@ -21,7 +21,7 @@ class ProfilePage extends Component {
     super(props);
 
     this.tabs = [
-      { label: 'Profile', to: '/profile', exact: true },
+      { label: 'Edit', to: '/profile', exact: true },
       { label: 'People', to: '/profile/people', exact: false },
       { label: 'Settings', to: '/profile/settings', exact: true },
     ];

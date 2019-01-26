@@ -28,7 +28,7 @@ class TextField extends Component {
   );
  
   render() {
-    const { name, required, ...other } = this.props;
+    const { name, autoComplete, required, ...other } = this.props;
 
     return (
       <Field
@@ -36,6 +36,7 @@ class TextField extends Component {
         component={this.renderInput}
         required={required}
         validate={required && this.validate}
+        autoComplete={autoComplete || name}
         {...other}
       />
     );
@@ -44,11 +45,13 @@ class TextField extends Component {
 
 TextField.propTypes = {
   name: PropTypes.string.isRequired,
-  required: PropTypes.bool
+  required: PropTypes.bool,
+  autoComplete: PropTypes.string,
 };
 
 TextField.defaultProps = {
-  required: false
+  required: false,
+  autoComplete: ''
 };
 
 export default TextField;

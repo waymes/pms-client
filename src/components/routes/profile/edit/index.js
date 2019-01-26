@@ -26,7 +26,9 @@ class ProfileEdit extends Component {
           <TextField name="firstName" required />
           <TextField name="lastName" required />
           <TextField name="email" type="email" required />
-          <Button type="submit">Save</Button>
+          <div className="d-flex justify-content-end">
+            <Button type="submit">Save</Button>
+          </div>
         </form>
       </ContentLayout>
     );

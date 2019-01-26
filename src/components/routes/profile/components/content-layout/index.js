@@ -7,7 +7,7 @@ import './style.scss';
 const ContentLayout = ({ title, headerLink, children }) => (
   <div className="contentLayout">
     <div className="contentLayout__header">
-      <h3>{title}</h3>
+      <h3 className="mb-3">{title}</h3>
       {headerLink && <Link to={headerLink.to}>{headerLink.label}</Link>}
     </div>
     {children}

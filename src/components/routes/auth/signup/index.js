@@ -35,7 +35,13 @@ class SignupPage extends Component {
         <TextField name="firstName" placeholder="First Name" required />
         <TextField name="lastName" placeholder="Last Name" required />
         <TextField name="email" placeholder="Email" type="email" required />
-        <TextField name="password" placeholder="Password" type="password" required />
+        <TextField
+          name="password"
+          placeholder="Password"
+          type="password"
+          autoComplete="new-password"
+          required
+        />
         <Button type="submit">Signup</Button>
       </WindowForm>
     );

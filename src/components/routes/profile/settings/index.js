@@ -1,5 +1,11 @@
 import React from 'react';
 
-export default () => (
-  <div>Settings</div>
+import ContentLayout from '../components/content-layout';
+
+const ProfileSettings = () => (
+  <ContentLayout title="Settings">
+    Settings
+  </ContentLayout>
 );
+
+export default ProfileSettings;

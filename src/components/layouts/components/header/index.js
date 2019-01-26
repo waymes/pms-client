@@ -49,9 +49,19 @@ class Header extends Component {
     }
   };
 
+  handleLogout = () => {
+    const { showBurgerMenu } = this.state;
+    const { logout } = this.props;
+
+    if (showBurgerMenu) {
+      this.setState({ showBurgerMenu: false });
+    }
+    logout();
+  }
+
   renderLinks() {
     const { showBurgerMenu } = this.state;
-    const { withToken, logout, isDesktop } = this.props;
+    const { withToken, isDesktop } = this.props;
 
     const linksList = this.links.filter(el => (withToken
       ? el.auth !== this.permissions.withoutAuth
@@ -72,7 +82,7 @@ class Header extends Component {
             <span
               role="button"
               tabIndex="0"
-              onClick={logout}
+              onClick={this.handleLogout}
               onKeyPress={this.handleLogoutKeyPress}
             >Logout</span>
           </li>

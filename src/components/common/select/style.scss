@@ -1,0 +1,15 @@
+.selectField {
+  position: relative;
+  padding-bottom: 24px;
+  cursor: pointer;
+  select {
+    background-color: #eee;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    &:focus {
+      outline: none;
+    }
+  }
+}

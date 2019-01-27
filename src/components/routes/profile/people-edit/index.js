@@ -4,14 +4,17 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 
-import { getPerson, getPersonIsLoading } from '../../../../store/selectors/people';
+import { getPerson, getPersonIsLoading, getPeopleError } from '../../../../store/selectors/people';
 import {
   fetchPersonAction, createNewPersonAction,
   updatePersonAction, clearPersonAction,
   deletePersonAction
 } from '../../../../store/actions/people';
+import { relationTypes } from './constants';
+import { withNotifications } from '../../../common/notification';
 import ContentLayout from '../components/content-layout';
 import TextField from '../../../common/text-field';
+import Select from '../../../common/select';
 import Button from '../../../common/button';
 import Loader from '../../../common/loader';
 
@@ -28,6 +31,17 @@ class PeopleEdit extends Component {
       fetchPerson(match.params.personId);
     } else {
       this.firstInput.current.focusInput();
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    const { errorMessage, queueNotification } = this.props;
+
+    const newError = errorMessage && !prevProps.errorMessage;
+    if (newError && errorMessage instanceof Array) {
+      errorMessage.forEach(err => queueNotification(err, { variant: 'error' }));
+    } else if (newError) {
+      queueNotification(errorMessage, { variant: 'error' });
     }
   }
 
@@ -60,8 +74,11 @@ class PeopleEdit extends Component {
     return (
       <ContentLayout title={isNew ? 'New Person' : 'Edit Person'}>
         <form onSubmit={handleSubmit(this.submit)}>
-          <TextField name="firstName" required disabled={loading} ref={this.firstInput} />
-          <TextField name="lastName" required disabled={loading} />
+          <TextField name="firstName" placeholder="First Name" required disabled={loading} ref={this.firstInput} />
+          <TextField name="lastName" placeholder="Last Name" disabled={loading} />
+          <TextField name="email" placeholder="Email" disabled={loading} />
+          <TextField name="city" placeholder="City" disabled={loading} />
+          <Select name="relation" options={relationTypes} />
           <div className="d-flex justify-content-end">
             {!isNew && (
               <Button
@@ -82,6 +99,7 @@ class PeopleEdit extends Component {
 PeopleEdit.propTypes = {
   person: PropTypes.object,
   loading: PropTypes.bool.isRequired,
+  error: PropTypes.string,
   fetchPerson: PropTypes.func.isRequired,
   createPerson: PropTypes.func.isRequired,
   clearPerson: PropTypes.func.isRequired,
@@ -92,7 +110,8 @@ PeopleEdit.propTypes = {
 const mapStateToProps = state => ({
   person: getPerson(state),
   initialValues: getPerson(state),
-  loading: getPersonIsLoading(state)
+  loading: getPersonIsLoading(state),
+  errorMessage: getPeopleError(state)
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -105,5 +124,10 @@ const mapDispatchToProps = dispatch => ({
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
-  reduxForm({ form: 'PersonEditForm', enableReinitialize: true })
+  reduxForm({
+    form: 'PersonEditForm',
+    enableReinitialize: true,
+    initialValues: { relation: 'NONE' }
+  }),
+  withNotifications
 )(PeopleEdit);

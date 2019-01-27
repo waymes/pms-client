@@ -16,7 +16,10 @@ class SignupPage extends Component {
   componentDidUpdate(prevProps) {
     const { errorMessage, queueNotification } = this.props;
 
-    if (!prevProps.errorMessage && errorMessage) {
+    const newError = errorMessage && !prevProps.errorMessage;
+    if (newError && errorMessage instanceof Array) {
+      errorMessage.forEach(err => queueNotification(err, { variant: 'error' }));
+    } else if (newError) {
       queueNotification(errorMessage, { variant: 'error' });
     }
   }

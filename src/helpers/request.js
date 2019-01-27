@@ -49,8 +49,9 @@ export function authRequest(meta) {
 
 export function getErrorMessage(err) {
   let error = err.toString();
-  if (err.response && err.response.data && err.response.data.message) {
-    error = err.response.data.message;
+  const { data } = err.response && (err.response || {});
+  if (data && (data.message || data.messages)) {
+    error = data.message || data.messages;
   }
   return error;
 }

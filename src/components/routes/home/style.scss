@@ -1,0 +1,17 @@
+.homePage {
+  &__header {
+    background-color: skyblue;
+    height: calc(100vh - 54px);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  &__description {
+    padding: 100px 0;
+  }
+  &__chars {
+    padding: 100px 0;
+  }
+}

@@ -2,16 +2,43 @@
   &__header {
     background-color: skyblue;
     height: calc(100vh - 54px);
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    position: relative;
+    &Particles, &Title {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+    &Title {
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      pointer-events: none;
+      user-select: none;
+      h1, h2 {
+        text-align: center;
+        padding: 0 5px;
+        background: rgba(106, 151, 171, 0.46);
+      }
+      h1 {
+        margin-bottom: 20px;
+      }
+    }
   }
-  &__description {
+  &__description, &__chars, &__support {
     padding: 100px 0;
   }
-  &__chars {
-    padding: 100px 0;
+  &__characteristic {
+    margin-bottom: 20px;
+    i {
+      color: skyblue;
+      font-size: 50px;
+    }
+    h5 {
+      margin: 10px 0;
+    }
   }
 }

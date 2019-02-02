@@ -7,6 +7,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import App from './components/App';
 import { NotificationProvider } from './components/common/notification';
 import { store, history, persistor } from './store';
+import 'particles.js';
 import * as serviceWorker from './serviceWorker';
 import './style/main.scss';
 

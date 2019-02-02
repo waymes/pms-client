@@ -1,7 +1,7 @@
 .generalLayout {
   &__pageContainer {
     position: relative;
-    min-height: calc(100vh - 54px);
+    height: calc(100vh - 54px);
     overflow: auto;
   }
 }

@@ -1,7 +1,5 @@
 # People Management System (PMS)
 
-_in development_
-
 ## How to build
 
 1. Download & install [Node.js](https://nodejs.org/en/download/ "Node.js")
